@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RiseTogether</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #0b1c32;
+      color: #f2f7fd;
+      font-family: Arial, sans-serif;
+    }
+
+    nav, section {
+      padding: 20px;
+      margin-bottom: 16px;
+      background: #142d49;
+      border: 1px solid #25496b;
+      border-radius: 16px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 12px;
+      background: #65b5ff;
+      color: #08203a;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tabs button {
+      background: #142d49;
+      color: white;
+      border: 1px solid #25496b;
+    }
+
+    .tabs button.active {
+      background: #65b5ff;
+      color: #08203a;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 650px) {
+      .columns { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Rise<span style="color:#65b5ff">Together</span></h1>
+    <p>Study smarter. Rise together.</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="active" onclick="showPage('Dashboard', this)">Dashboard</button>
+    <button onclick="showPage('My Courses', this)">My Courses</button>
+    <button onclick="showPage('Resources', this)">Resources</button>
+    <button onclick="showPage('Study Rooms', this)">Study Rooms</button>
+    <button onclick="showPage('Progress', this)">Progress</button>
+  </nav>
+
+  <main>
+    <section>
+      <h2 id="page-title">Welcome 👋</h2>
+      <p id="page-message">Small steps count. Every time you show up, you’re making progress.</p>
+      <button onclick="alert('Next, we can make the course upload work!')">＋ Add my slides</button>
+    </section>
+
+    <div class="columns">
+      <section>
+        <h2>Daily goal</h2>
+        <p>Study 3 sections today: <strong>0/3</strong></p>
+        <p>A little at a time is enough.</p>
+      </section>
+
+      <section>
+        <h2>Upcoming sessions</h2>
+        <p>No rooms yet.</p>
+        <button onclick="alert('Next, we can build study rooms!')">Create a study room</button>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    function showPage(name, button) {
+      document.getElementById('page-title').textContent = name;
+      document.getElementById('page-message').textContent =
+        name === 'Dashboard'
+          ? 'Small steps count. Every time you show up, you’re making progress.'
+          : name + ' will be built here next.';
+
+      document.querySelectorAll('.tabs button').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      button.classList.add('active');
+    }
+  </script>
+</body>
+</html>
